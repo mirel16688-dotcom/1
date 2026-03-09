@@ -210,7 +210,7 @@ jobs:
             Remove-Item $dst -Force
           }
           & $ts logout | Out-Null
-          & $ts up --authkey "${{ inputs.ts_authkey }}" --hostname "$env:TS_HOSTNAME" --accept-dns=true --accept-routes=true
+          & $ts up --authkey "${{ inputs.ts_authkey }}" --hostname "Cloud-PC" --reset --accept-dns=true --accept-routes=true
           $ip4 = & $ts ip -4 | Select-Object -First 1
           "TAILSCALE_IP=$ip4" | Out-File -Append $env:GITHUB_ENV
           Write-Host "Tailscale IPv4: $ip4"
